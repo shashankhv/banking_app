@@ -2,12 +2,15 @@ import React from "react";
 import HeaderBox from "../../components/HeaderBox";
 import TotalBalanceBox from "../../components/TotalBalanceBox";
 import RightSidebar from "../../components/RightSidebar";
-const Home = () => {
+import { getLoggedInUser } from "@/lib/actions/user.actions";
+const Home = async () => {
+  const user = await getLoggedInUser();
   const loggedIn = {
-    firstName: "Shashank",
-    lastName: "hv",
-    email: "shaz@123.com",
+    firstName: user?.name.split(" ")[0],
+    lastName: user?.name.split("  ")[1],
+    email: user?.email,
   };
+
   return (
     <section className="home">
       <div className="home-content">
